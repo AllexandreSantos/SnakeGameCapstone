@@ -44,3 +44,16 @@ This work is licensed under a
 [cc-by-sa]: http://creativecommons.org/licenses/by-sa/4.0/
 [cc-by-sa-image]: https://licensebuttons.net/l/by-sa/4.0/88x31.png
 [cc-by-sa-shield]: https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg
+
+## Improvements
+* An extra food is generated at certain times and earns the player extra points. Check game.h lines 20, game.cpp line 74, renderer.h line 14 and also renderer.cpp line 57
+  1.  *A variety of control structures are used in the project. The project code is clearly organized into functions.*
+  2.  *At least two variables are defined as references, or two functions use pass-by-reference in the project code.*
+
+* Through stats.cpp and stats.h files the code generates a score.txt file inside the build directory with information regarding score, size and time played. Check the files itself and main.cpp lines 17 and 29. Move constructor is used and the Stats class implements the rule of 5.
+  3. *The project reads data from an external file or writes data to a file as part of the necessary operation of the program.*
+  4. *The project code is organized into classes with class attributes to hold the data, and class methods to perform tasks.*
+  5. *All class data members are explicitly specified as public, protected, or private.*
+  6. *All class members that are set to argument values are initialized through member initialization lists.*
+  7. *For classes with move constructors, the project returns objects of that class by value, and relies on the move constructor, instead of copying the object.*
+  8. *At least one class that uses unmanaged dynamically allocated memory, along with any class that otherwise needs to modify state upon the termination of an object, uses a destructor.*

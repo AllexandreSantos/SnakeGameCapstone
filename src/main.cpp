@@ -1,7 +1,10 @@
 #include <iostream>
+#include <fstream>  
+#include <chrono>
 #include "controller.h"
 #include "game.h"
 #include "renderer.h"
+#include "stats.h"
 
 int main() {
   constexpr std::size_t kFramesPerSecond{60};
@@ -11,12 +14,20 @@ int main() {
   constexpr std::size_t kGridWidth{32};
   constexpr std::size_t kGridHeight{32};
 
+  Stats stats(0, 0, 0);
+
+  auto startGameTime = std::chrono::system_clock::now();
+
   Renderer renderer(kScreenWidth, kScreenHeight, kGridWidth, kGridHeight);
   Controller controller;
+
   Game game(kGridWidth, kGridHeight);
   game.Run(controller, renderer, kMsPerFrame);
-  std::cout << "Game has terminated successfully!\n";
-  std::cout << "Score: " << game.GetScore() << "\n";
-  std::cout << "Size: " << game.GetSize() << "\n";
+
+  auto endGameTime = std::chrono::system_clock::now();
+  std::chrono::duration<double> elapsedSeconds = endGameTime-startGameTime;
+  stats = Stats(game.GetSize(), game.GetScore(), elapsedSeconds.count());
+  stats.GenerateStatsFile();
+ 
   return 0;
 }
